@@ -1,26 +1,56 @@
 import StarSection from "./StarSection";
-import User from "../assets/user.jpg";
-import { useState } from "react";
+import UserImg from "../assets/user.jpg";
+import { useEffect, useState } from "react";
 
-const ReviewCard = () => {
-  const [visibleReadMore, setVisibleReadMore] = useState(false);
+const ReviewCard = ({
+  starCount = 5,
+  name,
+  date,
+  description,
+  user = UserImg,
+}) => {
+  const [showInitialBtn, setShowInitialBtn] = useState(false);
+  const [showContent, setShowContent] = useState(description);
+  const [btnText, setBtnText] = useState("Read More");
+  const [expand, setExpand] = useState(false);
+
+  useEffect(() => {
+    if (description.length > 150) {
+      setShowInitialBtn(true);
+      setShowContent(description.substring(0, 150) + " ...");
+    } else {
+      setShowContent(description);
+    }
+  }, [description]);
+
+  const handleSeeMore = () => {
+    if (expand) {
+      setExpand(false);
+      setShowContent(description.substring(0, 150) + " ...");
+      setBtnText("Read More");
+    } else {
+      setExpand(true);
+      setShowContent(description);
+      setBtnText("Read Less");
+    }
+  };
 
   return (
-    <div className="border border-blue-300 lg:w-1/2 w-full p-3">
-      <div className="w-full sm:w-[95%] flex flex-col gap-3  cursor-pointer ">
-        <StarSection />
+    <div className="w-full lg:w-1/2 p-3  ">
+      <div className="w-full sm:w-[95%] flex flex-col gap-3 cursor-pointer ">
+        <StarSection starCount={starCount} />
 
         {/* profile */}
         <div className="flex items-center gap-2">
-          <div className="w-[50px] xl:w-[60px] h-[50px] xl:h-[60px] items-center justify-center ">
+          <div className="w-[50px] xl:w-[60px] h-[50px] xl:h-[60px] items-center justify-center">
             <img
-              src={User}
+              src={user}
               alt=""
               className="w-[50px] xl:w-[60px] h-[50px] xl:h-[60px] rounded-full"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <span className="text-lg xl:text-xl">Ruma Elli</span>
+            <span className="text-lg xl:text-xl">{name}</span>
             <span className="text-[#979797] text-xs xl:text-sm">
               20 <span className="align-super">th</span> of May 2024
             </span>
@@ -28,17 +58,17 @@ const ReviewCard = () => {
         </div>
 
         {/* description */}
-        <div className="flex  flex-col gap-2">
-          <span className="text-sm sm:text-base text-justify sm:text-start">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-            illo doloremque minus rem nulla, distinctio quod delectus voluptas.
-            Odio fugit minima accusamus voluptatibus id optio ut sit totam
-            incidunt commodi.
+        <div className="flex flex-col gap-2 ">
+          <span className="text-sm sm:text-base text-justify sm:text-start duration-300">
+            {showContent}
           </span>
 
-          {visibleReadMore && (
-            <button className="text-[#737373] hover:text-[#000] font-bold text-xs sm:text-sm border-none w-fit">
-              Read More
+          {showInitialBtn && (
+            <button
+              onClick={handleSeeMore}
+              className="text-[#737373] hover:text-[#000] font-bold text-xs sm:text-sm border-none w-fit duration-300"
+            >
+              {btnText}
             </button>
           )}
         </div>

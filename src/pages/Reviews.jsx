@@ -1,11 +1,12 @@
 
 import ReviewCard from "../components/ReviewCard";
 import StarSection from "../components/StarSection";
+import {reviewData} from "../data/review.js"
 
 
 const Reviews = () => {
   return (
-    <div className="flex flex-col gap-5 xl:gap-10 max-w-[1600px] mx-auto border w-full min-h-screen h-auto border-red-500 p-5 xl:p-10">
+    <div className="flex flex-col gap-5 xl:gap-10 max-w-[1600px] mx-auto  w-full min-h-screen h-auto  p-5 xl:p-10">
       {/* title */}
       <span className="text-sm sm:text-base font-semibold">Reviews</span>
 
@@ -25,10 +26,7 @@ const Reviews = () => {
       {/* content section */}
       <div className="flex flex-wrap w-full">
         {/* section */}
-        <ReviewCard/>
-       
-        
-
+        {reviewData.map((item,index)=>(<ReviewCard key={index} user={item.user} starCount={item.starCount} name={item.name} date={item.date} description={item.description}/>))}
 
       </div>
     </div>
