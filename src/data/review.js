@@ -8,7 +8,7 @@ export const reviewData = [
         starCount :5,
         name: "Ruma Elli",
         date:"20 th of May 2024",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem illo doloremque minus rem nulla, distinctio quod delectus voluptas. Odio fugit minima accusamus voluptatibus id optio ut sit totam incidunt commodi."
+        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem illo doloremque minus rem nulla, distinctio quod delectus voluptas. Odio fugit minima accusamus voluptatibus id optio ut sit totam incidunt commodi. lorem Odio fugit minima accusamus voluptatibus id optio ut sit totam incidunt commodi. lorem"
 
     },
     {
@@ -26,6 +26,14 @@ export const reviewData = [
         name: "Loana Nice",
         date:"20 th of May 2024",
         description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem illo doloremque minus rem nulla, distinctio quod delectus voluptas. Odio fugit minima accusamus voluptatibus id optio ut sit totam incidunt commodi."
+
+    },
+    {
+        user:User,
+        starCount :3,
+        name: "Nicole Lee",
+        date:"21 th of May 2024",
+        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem illo doloremque minus rem nulla, distinctio quod delectus voluptas. Odio fugit."
 
     },
     {

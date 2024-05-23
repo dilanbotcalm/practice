@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import StarSection from "./StarSection";
 import UserImg from "../assets/user.jpg";
 import { useEffect, useState } from "react";
@@ -36,8 +37,8 @@ const ReviewCard = ({
   };
 
   return (
-    <div className="w-full lg:w-1/2 p-3  ">
-      <div className="w-full sm:w-[95%] flex flex-col gap-3 cursor-pointer ">
+    <div className="w-full lg:w-1/2 p-3">
+      <div className="w-full sm:w-[95%] flex flex-col gap-3 cursor-pointer">
         <StarSection starCount={starCount} />
 
         {/* profile */}
@@ -51,22 +52,28 @@ const ReviewCard = ({
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-lg xl:text-xl">{name}</span>
-            <span className="text-[#979797] text-xs xl:text-sm">
+            <span className="text-[#979797] text-[11px] xl:text-xs ">
               20 <span className="align-super">th</span> of May 2024
             </span>
           </div>
         </div>
 
         {/* description */}
-        <div className="flex flex-col gap-2 ">
-          <span className="text-sm sm:text-base text-justify sm:text-start duration-300">
+        <div className="flex flex-col gap-2 relative">
+          <motion.span
+            className="text-sm sm:text-base text-justify sm:text-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            key={showContent} 
+          >
             {showContent}
-          </span>
+          </motion.span>
 
           {showInitialBtn && (
             <button
               onClick={handleSeeMore}
-              className="text-[#737373] hover:text-[#000] font-bold text-xs sm:text-sm border-none w-fit duration-300"
+              className="text-[#737373] hover:text-[#000] font-bold text-xs sm:text-sm border-none w-fit"
             >
               {btnText}
             </button>
